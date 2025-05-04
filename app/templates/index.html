@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whispers of Wisdom</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="home">
+    <div class="container">
+        <h1>Whispers of Wisdom</h1>
+        <p class="quote">"Words, once they are printed, have a life of their own." – Carol Burnett</p>
+        <div class="button-group">
+            <a href="{{ url_for('fe_wise_quotes') }}"><button>Female Poets</button></a>
+            <a href="{{ url_for('wise_quotes') }}"><button>General Poets</button></a>
+        </div>
+    </div>
+</body>
+</html>

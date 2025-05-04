@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echoes of Poets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="general">
+    <div class="container">
+        <h1>Echoes of Poets</h1>
+        <p class="quote" id="quote">"Poetry is when an emotion has found its thought and the thought has found words." – Robert Frost</p>
+        <button onclick="showGeneralQuote()">Reflect</button>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

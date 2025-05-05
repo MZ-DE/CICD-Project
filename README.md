@@ -5,8 +5,8 @@ The app runs in Docker and offers two routes, each returning a random quote from
 # Goal/Motivation
 
 # Tech-Stack (Flask, Docker, GitHub Actions, AWS, Terraform, …)
-Flask
-Docker
+Flask </b>
+Docker </b>
 
 # Setup
 

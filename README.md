@@ -11,7 +11,7 @@ Docker
 # Setup
 
 build der Docker Container
-<pre>bash docker build -t app . docker run -p 5000:5000 app</pre>
+<pre>$ docker build -t app . docker run -p 5000:5000 app</pre>
 
 run the docker container
 <pre>$ docker run -p 5000:5000 app</pre>

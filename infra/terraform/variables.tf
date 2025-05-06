@@ -21,3 +21,9 @@ variable "vpc_id" {
   type = string
   description = "vpc id for security group"
 }
+
+variable "ssh-key" {
+    type = string
+    description = "SSH key to connect with terraform via SSH"
+  
+}

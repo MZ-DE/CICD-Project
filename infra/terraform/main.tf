@@ -2,8 +2,14 @@ provider "aws" {
   region = var.aws_region
 }
 
+resource "aws_key_pair" "devops-key" {
+  key_name = "devops-key"
+  public_key = var.ssh-key #file("~/.ssh/devopskey.pub")
+
+}
+
 resource "aws_security_group" "flask_enduser_secgroup" {
-    name = flask-enduser-secgroup
+    name = "flask-enduser-secgroup"
     description = "security groups for the Flask app"
     vpc_id = var.vpc_id
 
@@ -12,18 +18,18 @@ resource "aws_security_group" "flask_enduser_secgroup" {
     ingress {
         from_port = 22
         to_port = 22
-        protocol = SSH
+        protocol = "tcp"
         cidr_blocks = [ "0.0.0.0/0" ]
     }
 
     ingress {
         from_port = 5000
         to_port = 5000
-        protocol = http
+        protocol = "tcp"
         cidr_blocks = [ "0.0.0.0/0" ]
     }
 
-    egress = {
+    egress {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
@@ -33,7 +39,7 @@ resource "aws_security_group" "flask_enduser_secgroup" {
 }
 
 
-resource "aws_instance" "t2.micro_ec2_instance" {
+resource "aws_instance" "t2-micro_ec2_instance" {
     ami = var.ami_id
     instance_type = var.EC2_instance
     security_groups = [aws_security_group.flask_enduser_secgroup.name]

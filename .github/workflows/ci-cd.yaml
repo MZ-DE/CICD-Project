@@ -18,7 +18,7 @@ jobs:
 
       - name: build-app-local
         run: |
-              cd ~/CICD-Project/app
+              cd ~/app
               sudo python app.py &
 
       - name: test-flask

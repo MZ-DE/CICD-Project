@@ -34,7 +34,7 @@ jobs:
         run: |
               sudo echo "{{$secrets.SSH_KEY}}" > key.pem
               sudo chmod 600 key.pem
-              sudo ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.HOST }}
+              sudo ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.HOST }} << 'EOF'
               sudo snap install docker
               sudo docker stop flask-app || true && sudo docker rm flask-app || true
               sudo git clone https://github.com/MZ-DE/CICD-Project.git && cd ~/CICD-Procect

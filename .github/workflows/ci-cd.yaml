@@ -28,7 +28,7 @@ jobs:
         run: sudo pkill -f app.py
 
       - name: install-docker
-        run: sudo snap install docker -y
+        run: sudo snap install docker
 
       - name: ssh-deploy
         run: |

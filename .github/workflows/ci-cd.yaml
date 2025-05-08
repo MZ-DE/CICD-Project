@@ -18,7 +18,7 @@ jobs:
 
       - name: build-app-local
         run: |
-              cd ~/app
+              ls -la
               sudo python app.py &
 
       - name: test-flask

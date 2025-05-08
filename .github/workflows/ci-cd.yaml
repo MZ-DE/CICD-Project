@@ -34,10 +34,9 @@ jobs:
         run: |
               sudo echo "{{$secrets.SSH_KEY}}" > key.pem
               sudo chmod 600 key.pem
-              sudo ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.HOST }} < EOF
+              sudo ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.HOST }}
               sudo snap install docker
               sudo docker stop flask-app || true && sudo docker rm flask-app || true
               sudo git clone https://github.com/MZ-DE/CICD-Project.git && cd ~/CICD-Procect
               sudo docker build -t flask-app . 
               sudo docker run -d -p 5000:5000 --name=flask-app flask-app
-              EOF

@@ -19,7 +19,7 @@ jobs:
       - name: build-app-local
         run: |
               ls -la
-              sudo python app.py &
+              sudo python app/app.py &
 
       - name: test-flask
         run: sudo curl 127.0.0.1:5000

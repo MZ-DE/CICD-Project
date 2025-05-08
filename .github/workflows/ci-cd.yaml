@@ -1,0 +1,43 @@
+name: pull-action-test
+
+on: push
+
+jobs:
+  build: 
+    runs-on: ubuntu latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install-python
+        run: apt install python3 -y
+
+      - name: install-requirements
+        run: pip install -r requirements.txt
+
+      - name: build-app-local
+        run: |
+              cd ~/CICD-Project/app
+              python app.py &
+
+      - name: test-flask
+        run: curl 127.0.0.1:5000
+
+      - name: stop-flask
+        run: pkill -f app.py
+
+      - name: install-docker
+        run: apt install docker -y
+
+      - name: ssh-deploy
+        run: |
+              sudo echo "{{$secrets.SSH_KEY}}" > key.pem
+              sudo chmod 600 key.pem
+              sudo ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.HOST }} < EOF
+              sudo snap install docker
+              sudo docker stop flask-app || true && sudo docker rm flask-app || true
+              sudo git clone https://github.com/MZ-DE/CICD-Project.git && cd ~/CICD-Procect
+              sudo docker build -t flask-app . 
+              sudo docker run -d -p 5000:5000 --name=flask-app flask-app
+              EOF

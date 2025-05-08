@@ -32,7 +32,7 @@ jobs:
 
       - name: ssh-deploy
         run: |
-              sudo echo "{{ secrets.SSH_KEY }}" > key.pem
+              sudo echo "${{ secrets.SSH_KEY }}" > key.pem
               sudo chmod 600 key.pem
               sudo ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.HOST }} << 'EOF'
               sudo snap install docker

@@ -1,0 +1,25 @@
+services:
+  flask-app:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - flask-app-env-net
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - flask-app-env-net
+  prometheus:
+    image: prom/prometheus 
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus:/etc/prometheus/prometheus.yaml"
+    networks:
+      - flask-app-env-net
+
+
+networks:
+  flask-app-env-net: {}
